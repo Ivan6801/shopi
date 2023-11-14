@@ -3,24 +3,33 @@ import { PlusIcon, CheckIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
 
 export const Card = (data) => {
-  const context = useContext(ShoppingCartContext);
+  const {
+    count,
+    setCount,
+    cartProducts,
+    openProductDetail,
+    setProductToShow,
+    setCartProducts,
+    openCheckoutSideMenu,
+    closeProductDetail,
+  } = useContext(ShoppingCartContext);
 
   const showProduct = (productDetail) => {
-    context.openProductDetail();
-    context.setProductToShow(productDetail);
+    openProductDetail();
+    setProductToShow(productDetail);
   };
 
   const addProductsToCart = (event, productData) => {
     event.stopPropagation();
-    context.setCount(context.count + 1);
-    context.setCartProducts([...context.cartProducts, productData]);
-    context.openCheckoutSideMenu();
-    context.closeProductDetail();
+    setCount(count + 1);
+    setCartProducts([...cartProducts, productData]);
+    openCheckoutSideMenu();
+    closeProductDetail();
   };
 
   const renderIcon = (id) => {
     const isInCart =
-      context.cartProducts.filter((product) => product.id === id).length > 0;
+      cartProducts.filter((product) => product.id === id).length > 0;
 
     if (isInCart) {
       return (

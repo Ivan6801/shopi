@@ -9,9 +9,11 @@ export function Home() {
 
   const renderView = () => {
     if (filteredItems?.length > 0) {
-      return filteredItems?.map((item) => <Card key={item.id} data={item} />);
+      return filteredItems?.map((item) => (
+        <Card key={item.id} data={item} />
+      ));
     } else {
-      return <div>We dont have anything</div>;
+      return <div>We dont have anything :(</div>;
     }
   };
 
@@ -26,7 +28,7 @@ export function Home() {
         className="rounded-lg border border-black w-80 p-4 mb-4 focus:outline-none"
         onChange={(event) => setSearchByTitle(event.target.value)}
       />
-      <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full max-w-screen-lg">
         {renderView()}
       </div>
       <ProductDetail />
